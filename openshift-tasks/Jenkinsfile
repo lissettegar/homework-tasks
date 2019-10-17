@@ -43,21 +43,39 @@ podTemplate(
       // Set the tag for the production image: version
       def prodTag = "${version}"
 
-      // Using Maven build the war file
-      // Do not run tests in this step
+      //Using Maven build the war file
       stage('Build war') {
         echo "Building version ${devTag}"
         sh "${mvnCmd} clean package -DskipTests=true"
       }
 
-      stage('Unit Tests') {
-        echo "Running Unit Tests"
-        sh "${mvnCmd} test"
-      }
+      //stage('Unit Tests') {
+       // echo "Running Unit Tests"
+        //sh "${mvnCmd} test"
+      //}
 
-      stage('Code Analysis') {
-        echo "Running Code Analysis"
-        sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube-gpte-hw-cicd.apps.na311.openshift.opentlc.com/ -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectVersion=${devTag}"
+      //stage('Code Analysis') {
+       // echo "Running Code Analysis"
+        //sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube-gpte-hw-cicd.apps.na311.openshift.opentlc.com/ -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectVersion=${devTag}"
+      //}
+
+      // Using Maven run the unit tests
+      stage('Code & Unit Tests') {
+	parallel 'unitTests': {
+	  stage ('Unit Tests') {
+            echo "Running Unit Tests"
+            // TBD: Execute Unit Tests
+	    sh "${mvnCmd} test"
+	  }
+        },
+	'codeAnalysis': {
+          // Using Maven to call SonarQube for Code Analysis
+          stage('Code Analysis') {
+            echo "Running Code Analysis"
+            sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube-gpte-hw-cicd.apps.na311.openshift.opentlc.com/ -Dsonar.projectName=${JOB_BASE_NAME} -Dsonar.projectVersion=${devTag}"
+	  }
+        },
+	failFast: true
       }
 
       // Publish the built war file to Nexus
