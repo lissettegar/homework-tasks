@@ -19,10 +19,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.jboss.quickstarts.eap</groupId>
-  <artifactId>tasks</artifactId>
+  <artifactId>demo-logicalis</artifactId>
   <version>1.0</version>
   <packaging>war</packaging>
-  <name>JBoss EAP - Tasks App</name>
+  <name>JBoss EAP - Demo Logicalis App</name>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -154,7 +154,7 @@
 
   <build>
     <!-- Maven will append the version to the finalName (which is the name given to the generated war, and hence the context root) -->
-    <finalName>openshift-tasks</finalName>
+    <finalName>demo-logicalis</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
