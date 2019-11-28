@@ -124,8 +124,8 @@
                     <td><%= System.getenv("HOSTNAME") %></td>
                   </tr>
                   <tr role="row" class="even">
-                    <td>Pod IP</td>
-                    <td><%= System.getenv("MY_POD_IP") %></td>
+                    <td>Project</td>
+                    <td><%= System.getenv("OPENSHIFT_BUILD_NAMESPACE") %></td>
                   </tr>
                   <tr role="row" class="odd">
                     <td>Used Memory</td>
@@ -133,8 +133,9 @@
                     <td><%= (Runtime.getRuntime().totalMemory()) / mb %> MB</td>
                   </tr>
                   <tr role="row" class="even">
-                    <td>Session ID</td>
-                    <td><%= session.getId() %></td>
+                    <td>CPU Load</td>
+                    <% OperatingSystemMXBean osbean = ManagementFactory.getOperatingSystemMXBean(); %>
+                    <td><%= osbean.getSystemLoadAverage() %></td>
                   </tr>
                 </table>
               </div>
