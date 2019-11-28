@@ -134,8 +134,8 @@
                   </tr>
                   <tr role="row" class="even">
                     <td>CPU Load</td>
-                    <% OperatingSystemMXBean osbean = ManagementFactory.getOperatingSystemMXBean(); %>
-                    <td><%= osbean.getSystemLoadAverage() %></td>
+                    <% int mb = 1024*1024; %>
+                    <td><%= (Runtime.getRuntime().totalMemory()) / mb %> MB</td>
                   </tr>
                 </table>
               </div>
