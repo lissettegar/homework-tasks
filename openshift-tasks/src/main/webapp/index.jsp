@@ -26,18 +26,8 @@
               <table>
                 <tr>
                   <img src="img/logicalis-logo.png" width="200"/>
-                  <td width=500px></td>
-                  <td width=200px>
-                    <a href="load.php">Load CPU   </a>
-                  </td>
-                  <td width=200px>
-                    <a href="load2.php">Stop Test   </a>
-                  </td>
-                  <td width=200px>
-                    <a href="edit.php">Insert Data    </a>
-                  </td>
-                  <td width=400px>
-                    <p align="left"> <font size="4" color="black"> Logicalis 2019  </font></p>
+                  <td width=1700px>
+                    <p align="right"> <font size="3" color="black"> Logicalis 2019  </font></p>
                   </td>
                 </tr>
               </table>
